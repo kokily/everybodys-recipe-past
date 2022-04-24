@@ -9,16 +9,16 @@ interface Props {
 
 function useHome({ navigation }: Props) {
   const [title, setTitle] = useState('');
-  const { data, isFetchingNextPage, hasNextPage, fetchNextPage, refetch } =
-    useInfiniteQuery(
-      'menus',
-      ({ pageParam }) => listRecipesAPI({ title, cursor: pageParam }),
-      {
-        getNextPageParam: (data) =>
-          data.length === 20 ? data[data.length - 1].id : undefined,
-        enabled: true,
-      }
-    );
+  const [toggle, setToggle] = useState(false);
+  const { data, isFetchingNextPage, fetchNextPage, refetch } = useInfiniteQuery(
+    'menus',
+    ({ pageParam }) => listRecipesAPI({ title, cursor: pageParam }),
+    {
+      getNextPageParam: (data) =>
+        data.length === 20 ? data[data.length - 1].id : undefined,
+      enabled: true,
+    }
+  );
   const recipes = useMemo(() => {
     if (!data) {
       return [];
@@ -29,7 +29,7 @@ function useHome({ navigation }: Props) {
 
   const onSearch = useCallback(() => {
     refetch();
-  }, [title]);
+  }, [title, refetch]);
 
   const onMenu = (id: string) => {
     navigation.navigate('MenuScreen', { id });
@@ -37,13 +37,14 @@ function useHome({ navigation }: Props) {
 
   return {
     recipes,
-    isFetchingNextPage,
-    hasNextPage,
+    loading: isFetchingNextPage,
     fetchNextPage,
     title,
     setTitle,
     onSearch,
     onMenu,
+    toggle,
+    setToggle,
   };
 }
 
