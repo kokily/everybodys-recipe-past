@@ -69,3 +69,9 @@ interface User {
   user_id: string;
   username: string;
 }
+
+interface InitType {
+  title: string;
+  serving: string;
+  thumbnail: string;
+}
