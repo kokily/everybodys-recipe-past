@@ -1,6 +1,6 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import AuthTemplate from '../components/AuthTemplate';
+import AuthTemplate from '../components/auth/AuthTemplate';
 import useAuth from '../hooks/useAuth';
 
 interface Props {

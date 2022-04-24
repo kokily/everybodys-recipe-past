@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dialog, Portal } from 'react-native-paper';
-import { Button } from 'react-native-elements';
+import { Button } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 
 interface Props {
@@ -19,12 +19,20 @@ const LogoutDialog: React.FC<Props> = ({ visible, closeDialog, onLogout }) => (
       <Dialog.Actions
         style={{
           width: '100%',
-          backgroundColor: '#9cc5b7',
+          backgroundColor: '#ffffff',
           justifyContent: 'center',
         }}
       >
-        <Button title="취소" onPress={closeDialog} style={styles.button} />
-        <Button title="로그아웃" onPress={onLogout} style={styles.button} />
+        <Button onPress={closeDialog} style={styles.button}>
+          취소
+        </Button>
+        <Button
+          onPress={onLogout}
+          style={styles.button}
+          labelStyle={styles.out}
+        >
+          로그아웃
+        </Button>
       </Dialog.Actions>
     </Dialog>
   </Portal>
@@ -33,6 +41,9 @@ const LogoutDialog: React.FC<Props> = ({ visible, closeDialog, onLogout }) => (
 const styles = StyleSheet.create({
   button: {
     marginRight: 15,
+  },
+  out: {
+    fontWeight: 'bold',
   },
 });
 

@@ -1,13 +1,18 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import AppLayout from '../components/AppLayout';
+import { Text } from 'react-native-elements';
+import AppLayout from '../components/common/AppLayout';
 
 interface Props {
   navigation: NativeStackNavigationProp<RootStackParamsList>;
 }
 
 function AddMaterialScreen({ navigation }: Props) {
-  return <AppLayout navigation={navigation}>AddMaterial</AppLayout>;
+  return (
+    <AppLayout navigation={navigation}>
+      <Text>AddMaterial</Text>
+    </AppLayout>
+  );
 }
 
 export default AddMaterialScreen;

@@ -13,9 +13,13 @@ function useAuth({ navigation, mode }: Props) {
   const [, setUser] = useUserState();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState<Error | null>(null);
   const { mutate: login } = useMutation(loginAPI, {
     onSuccess: (data) => {
       setUser(data);
+    },
+    onError: (err: any) => {
+      setError(err);
     },
   });
   const { mutate: register } = useMutation(registerAPI, {
@@ -53,6 +57,7 @@ function useAuth({ navigation, mode }: Props) {
     setPassword,
     onSubmit,
     onLogout,
+    error,
   };
 }
 

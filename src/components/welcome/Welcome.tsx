@@ -13,7 +13,7 @@ const Welcome: React.FC<Props> = ({ navigation }) => (
     <Text style={styles.title}>모두의 레시피</Text>
 
     <Image
-      source={require('../../assets/welcome.png')}
+      source={require('../../../assets/welcome.png')}
       resizeMode="contain"
       style={styles.image}
     />
