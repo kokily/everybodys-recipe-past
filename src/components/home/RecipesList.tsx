@@ -30,6 +30,7 @@ const RecipesList: React.FC<Props> = ({
       ListFooterComponent={loading ? <ActivityIndicator /> : null}
       disableVirtualization={false}
       onEndReached={onNextListRecipes}
+      style={{ marginTop: 24 }}
     />
   );
 };

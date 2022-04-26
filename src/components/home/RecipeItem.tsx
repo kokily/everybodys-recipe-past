@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
-import { Text } from 'react-native-elements';
+import { Text, Badge } from 'react-native-elements';
+import { Card } from 'react-native-paper';
 
 interface Props {
   recipe: RecipeType;
@@ -14,8 +15,33 @@ const RecipeItem: React.FC<Props> = ({ recipe, onMenu }) => {
         style={styles.contents}
         onPress={() => onMenu(recipe.id)}
       >
-        <Image source={{ uri: recipe.thumbnail }} style={styles.thumbnail} />
-        <Text style={styles.text}>{recipe.title}</Text>
+        <Card.Title
+          title={
+            recipe.title.length > 15
+              ? `${recipe.title.slice(14)}...`
+              : recipe.title
+          }
+          subtitle={`${recipe.serving}인분`}
+          left={(props) => (
+            <Image
+              source={{ uri: recipe.thumbnail }}
+              {...props}
+              style={styles.thumbnail}
+            />
+          )}
+          right={(props) => (
+            <Text>
+              재료{' '}
+              {recipe.materials && recipe.materials.length > 0 ? (
+                <Badge {...props}>{recipe.materials.length}</Badge>
+              ) : (
+                0
+              )}
+              개
+            </Text>
+          )}
+          style={{ width: '100%' }}
+        />
       </TouchableOpacity>
     </View>
   );
@@ -28,18 +54,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   contents: {
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    width: 250,
     height: 70,
+    paddingHorizontal: 10,
   },
   thumbnail: {
     width: 50,
-    height: 45,
-    marginRight: 10,
-  },
-  text: {
-    fontSize: 18,
+    height: 60,
   },
 });
 

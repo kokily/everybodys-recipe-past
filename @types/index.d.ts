@@ -75,3 +75,9 @@ interface InitType {
   serving: string;
   thumbnail: string;
 }
+
+interface FileType {
+  type: string;
+  path: string;
+  name: string;
+}

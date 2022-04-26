@@ -1,10 +1,12 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import type { CameraType } from 'expo-camera/src/Camera.types';
+import type { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { Camera } from 'expo-camera';
-import { CameraType } from 'expo-camera/src/Camera.types';
 import { StyleSheet, View } from 'react-native';
+import { Text, Button } from 'react-native-elements';
 import CameraLayout from './CameraLayout';
-import { Text } from 'react-native-elements';
 import RecipeInputs from './RecipeInputs';
+import Thumbnail from './Thumbnail';
 
 interface Props {
   inits: InitType;
@@ -21,6 +23,7 @@ interface Props {
   setCamera: Dispatch<SetStateAction<Camera | null>>;
   cameraView: boolean;
   setCameraView: Dispatch<SetStateAction<boolean>>;
+  loading: boolean;
 }
 
 const InitRecipe: React.FC<Props> = ({
@@ -38,6 +41,7 @@ const InitRecipe: React.FC<Props> = ({
   setCamera,
   cameraView,
   setCameraView,
+  loading,
 }) => (
   <View style={styles.container}>
     {cameraView ? (
@@ -56,6 +60,27 @@ const InitRecipe: React.FC<Props> = ({
         </Text>
 
         <RecipeInputs inits={inits} setInits={setInits} />
+
+        <Thumbnail
+          thumbnail={inits.thumbnail}
+          onPickImage={onPickImage}
+          hasPermission={hasPermission}
+          cameraView={cameraView}
+          setCameraView={setCameraView}
+          onRemoveImage={onRemoveImage}
+          loading={loading}
+        />
+
+        {inits.title != '' &&
+          inits.serving !== '' &&
+          inits.thumbnail !== '' && (
+            <Button
+              title="레시피 등록하기"
+              onPress={onInitRecipe}
+              buttonStyle={{ backgroundColor: '#00ab82' }}
+              titleStyle={{ fontSize: 18 }}
+            />
+          )}
       </>
     )}
   </View>

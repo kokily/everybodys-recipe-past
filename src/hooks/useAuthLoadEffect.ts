@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect } from 'react';
 import { useMutation } from 'react-query';
 import { checkAPI } from '../api/auth';
+import client from '../api/client';
 import { useUserState } from '../context/UserContext';
 
 function useAuthLoadEffect() {
@@ -21,6 +22,9 @@ function useAuthLoadEffect() {
         console.log('체킹됨!');
         // @ts-ignore
         client.defaults.headers.Cookie = `access_token=${accessToken}; refresh_token=${refreshToken}`;
+      } else {
+        // @ts-ignore
+        client.defaults.headers.Cookie = '';
       }
     };
 

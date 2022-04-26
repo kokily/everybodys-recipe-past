@@ -25,6 +25,7 @@ function useInit({ navigation }: Props) {
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [camera, setCamera] = useState<Camera | null>(null);
   const [cameraView, setCameraView] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { mutate: initRecipe } = useMutation(initRecipeAPI, {
     onSuccess: () => {
       queryClient.invalidateQueries('menus');
@@ -56,24 +57,22 @@ function useInit({ navigation }: Props) {
 
   const onPickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
     });
 
     if (!result.cancelled) {
-      try {
-        const key = await uploadImage(result.uri);
+      const url = await uploadImage(result.uri);
 
-        setInits({
-          ...inits,
-          thumbnail: `https://image.dnkdream.com/${key}`,
-        });
-      } catch (err: any) {
-        console.log(err);
-        return;
-      }
+      setInits({
+        ...inits,
+        thumbnail: url,
+      });
+    } else {
+      console.log('취소됨');
+      return;
     }
   };
 
@@ -94,11 +93,11 @@ function useInit({ navigation }: Props) {
     try {
       if (camera) {
         const data = await camera.takePictureAsync();
-        const key = await uploadImage(data.uri);
+        const url = await uploadImage(data.uri);
 
         setInits({
           ...inits,
-          thumbnail: `https://image.dnkdream.com/${key}`,
+          thumbnail: url,
         });
         setCameraView(false);
       }
@@ -108,12 +107,24 @@ function useInit({ navigation }: Props) {
     }
   };
 
+  const checkPermission = async () => {
+    const { status } = await ImagePicker.getMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      setHasPermission(false);
+      alert(
+        "Please grant camera roll permissions inside your system's settings"
+      );
+    } else {
+      setHasPermission(true);
+      console.log('Media Permissions are granted');
+    }
+  };
+
   useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
+    checkPermission();
   }, []);
+
+  console.log(thumbnail);
 
   return {
     inits,
@@ -130,6 +141,7 @@ function useInit({ navigation }: Props) {
     setCamera,
     cameraView,
     setCameraView,
+    loading,
   };
 }
 

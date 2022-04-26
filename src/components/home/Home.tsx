@@ -82,8 +82,9 @@ const Home: React.FC<Props> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+    backgroundColor: '#e4e4e4',
   },
   layout: {
     width: '100%',

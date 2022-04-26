@@ -1,6 +1,5 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { Text } from 'react-native-elements';
 import AppLayout from '../components/common/AppLayout';
 import InitRecipe from '../components/init/InitRecipe';
 import useInit from '../hooks/useInit';
@@ -25,6 +24,7 @@ function InitScreen({ navigation }: Props) {
     setCamera,
     cameraView,
     setCameraView,
+    loading,
   } = useInit({ navigation });
 
   return (
@@ -44,6 +44,7 @@ function InitScreen({ navigation }: Props) {
         setCamera={setCamera}
         cameraView={cameraView}
         setCameraView={setCameraView}
+        loading={loading}
       />
     </AppLayout>
   );
