@@ -30,7 +30,7 @@ const RecipeItem: React.FC<Props> = ({ recipe, onMenu }) => {
             />
           )}
           right={(props) => (
-            <Text>
+            <Text style={styles.rightStyle}>
               재료{' '}
               {recipe.materials && recipe.materials.length > 0 ? (
                 <Badge {...props}>{recipe.materials.length}</Badge>
@@ -63,6 +63,9 @@ const styles = StyleSheet.create({
   thumbnail: {
     width: 50,
     height: 60,
+  },
+  rightStyle: {
+    marginRight: 30,
   },
 });
 
