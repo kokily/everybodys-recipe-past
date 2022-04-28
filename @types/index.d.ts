@@ -13,9 +13,6 @@ type RootStackParamsList = {
   AddMaterialScreen: {
     id: string;
   };
-  RecipeScreen: {
-    id: string;
-  };
   CostScreen: {
     id: string;
   };
@@ -31,15 +28,11 @@ interface RecipeType {
   id: string;
   title: string;
   thumbnail: string;
-  serving: number;
-  all_price: number;
-  all_cost: number;
-  cost_ratio: number;
-  materials: MaterialType[];
   content: string;
-  user_id: string;
-  username: string;
-  createdAt: string;
+  serving: number;
+  all_cost: number;
+  fk_user_id: string;
+  materials: MaterialType[];
 }
 
 type UnitType =
@@ -56,11 +49,11 @@ type UnitType =
 type DivideType = '주재료' | '부재료' | '소스';
 
 interface MaterialType {
-  materialId: string;
-  title: string;
-  usage: string;
-  unit: UnitType;
+  id: string;
+  name: string;
   divide: DivideType;
+  unit: UnitType;
+  usage: string;
   price: string;
   cost: string;
 }

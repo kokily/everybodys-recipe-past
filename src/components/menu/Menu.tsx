@@ -49,7 +49,7 @@ const Menu: React.FC<Props> = ({
             ]}
             style={styles.banner}
           >
-            이미지를 클릭하면 변경할 수 있습니다
+            이미지 클릭 시 변경할 수 있습니다
           </Banner>
 
           <MenuButtons onMaterial={onMaterial} onCost={onCost} />
@@ -71,6 +71,7 @@ const Menu: React.FC<Props> = ({
               },
             ]}
             onStateChange={() => setToggle(!toggle)}
+            style={{ zIndex: 20 }}
           />
         </>
       )}
@@ -82,13 +83,13 @@ const Menu: React.FC<Props> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 26,
+    marginTop: 20,
     paddingHorizontal: 15,
   },
   title: {
     textAlign: 'center',
     color: '#00ab82',
-    marginBottom: 15,
+    marginBottom: 10,
   },
   banner: {
     marginTop: 10,

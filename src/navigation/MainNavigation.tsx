@@ -4,7 +4,6 @@ import HomeScreen from '../screens/HomeScreen';
 import InitScreen from '../screens/InitScreen';
 import MenuScreen from '../screens/MenuScreen';
 import MaterialScreen from '../screens/MaterialScreen';
-import RecipeScreen from '../screens/RecipeScreen';
 import CostScreen from '../screens/CostScreen';
 import AddMaterialScreen from '../screens/AddMaterialScreen';
 
@@ -42,13 +41,6 @@ function MainNavigation() {
       <Stack.Screen
         name="AddMaterialScreen"
         component={AddMaterialScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="RecipeScreen"
-        component={RecipeScreen}
         options={{
           headerShown: false,
         }}

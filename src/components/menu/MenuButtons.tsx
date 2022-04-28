@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 12,
     paddingHorizontal: 40,
+    zIndex: 0,
   },
   button: {
     marginBottom: 10,
