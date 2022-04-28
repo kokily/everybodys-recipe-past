@@ -1,10 +1,10 @@
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Appbar } from 'react-native-paper';
 import useAuth from '../../hooks/useAuth';
 import LogoutDialog from './LogoutDialog';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface Props {
   children: React.ReactNode;

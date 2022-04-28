@@ -2,6 +2,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import AppLayout from '../components/common/AppLayout';
 import InitRecipe from '../components/init/InitRecipe';
+import useBack from '../hooks/useBack';
 import useInit from '../hooks/useInit';
 
 interface Props {
@@ -12,7 +13,6 @@ function InitScreen({ navigation }: Props) {
   const {
     inits,
     setInits,
-    onBack,
     onInitRecipe,
     onPickImage,
     onRemoveImage,
@@ -26,13 +26,13 @@ function InitScreen({ navigation }: Props) {
     setCameraView,
     loading,
   } = useInit({ navigation });
+  const { onBack } = useBack({ navigation });
 
   return (
-    <AppLayout navigation={navigation}>
+    <AppLayout navigation={navigation} onBack={onBack}>
       <InitRecipe
         inits={inits}
         setInits={setInits}
-        onBack={onBack}
         onInitRecipe={onInitRecipe}
         onPickImage={onPickImage}
         onRemoveImage={onRemoveImage}

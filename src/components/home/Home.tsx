@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
   layout: {
     width: '100%',
-    marginVertical: 50,
+    marginVertical: 20,
     alignItems: 'center',
   },
   title: {

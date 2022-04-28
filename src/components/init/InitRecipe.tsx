@@ -4,14 +4,13 @@ import React from 'react';
 import { Camera } from 'expo-camera';
 import { StyleSheet, View } from 'react-native';
 import { Text, Button } from 'react-native-elements';
-import CameraLayout from './CameraLayout';
+import CameraLayout from './../common/CameraLayout';
 import RecipeInputs from './RecipeInputs';
 import Thumbnail from './Thumbnail';
 
 interface Props {
   inits: InitType;
   setInits: Dispatch<SetStateAction<InitType>>;
-  onBack: () => void;
   onInitRecipe: () => void;
   onPickImage: () => void;
   onRemoveImage: () => void;
@@ -29,7 +28,6 @@ interface Props {
 const InitRecipe: React.FC<Props> = ({
   inits,
   setInits,
-  onBack,
   onInitRecipe,
   onPickImage,
   onRemoveImage,

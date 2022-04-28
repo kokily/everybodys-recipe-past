@@ -32,10 +32,6 @@ function useInit({ navigation }: Props) {
     },
   });
 
-  const onBack = () => {
-    navigation.goBack();
-  };
-
   const onInitRecipe = useCallback(() => {
     if ([title, serving, thumbnail].includes('')) {
       Alert.alert('빈 칸 없이 입력하세요');
@@ -129,7 +125,6 @@ function useInit({ navigation }: Props) {
   return {
     inits,
     setInits,
-    onBack,
     onInitRecipe,
     onPickImage,
     onRemoveImage,

@@ -25,6 +25,20 @@ export async function addRecipeAPI(payload: AddRecipePayload) {
   return response.data;
 }
 
+export interface ChangeThumbnailPayload {
+  id: string;
+  thumbnail: string;
+}
+
+// Change Thumbnail API
+export async function changeThumbnailAPI(payload: ChangeThumbnailPayload) {
+  const { id, thumbnail } = payload;
+  const response = await client.patch(`/recipes/thumbnail/${id}`, {
+    thumbnail,
+  });
+  return response.data;
+}
+
 export interface ListRecipesQuery {
   title?: string;
   cursor?: string;
