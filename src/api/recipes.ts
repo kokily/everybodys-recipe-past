@@ -75,6 +75,6 @@ export async function readRecipeAPI(id: string) {
 
 // Remove Recipe API
 export async function removeRecipeAPI(id: string) {
-  await client.delete(`/recipes/${id}`);
-  return null;
+  const response = await client.delete(`/recipes/${id}`);
+  return response.data;
 }

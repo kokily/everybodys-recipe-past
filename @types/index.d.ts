@@ -59,6 +59,16 @@ interface MaterialType {
   cost: number;
 }
 
+interface InputMaterialType {
+  id: string;
+  name: string;
+  divide: DivideType;
+  unit: UnitType;
+  usage: string;
+  price: string;
+  cost: string;
+}
+
 interface User {
   user_id: string;
   username: string;

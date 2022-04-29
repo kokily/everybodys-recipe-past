@@ -82,7 +82,10 @@ const Calcul: React.FC<Props> = ({
                 />
               ) : (
                 <Text onPress={() => setUpdatePrice(true)}>
-                  {recipe.all_price}원
+                  {recipe.all_price
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  원
                 </Text>
               )
             ) : (

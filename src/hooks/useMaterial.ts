@@ -21,7 +21,7 @@ function useMaterial() {
   });
   const { mutate: removeMaterial } = useMutation(removeMaterialAPI, {
     onSuccess: () => {
-      queryClient.invalidateQueries('materials');
+      queryClient.invalidateQueries('recipe');
     },
   });
   const { data: recipe } = useQuery('recipe', () => readRecipeAPI(id), {

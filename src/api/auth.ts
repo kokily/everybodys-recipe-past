@@ -26,8 +26,8 @@ export async function registerAPI(payload: AuthPayload) {
 
 // Logout API
 export async function logoutAPI() {
-  await client.post('/auth/logout');
-  return null;
+  const response = await client.post('/auth/logout');
+  return response.data;
 }
 
 // Check API

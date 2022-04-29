@@ -38,8 +38,8 @@ export async function readMaterialAPI(id: string) {
 
 // Remove Material API
 export async function removeMaterialAPI(id: string) {
-  await client.delete(`/materials/${id}`);
-  return null;
+  const response = await client.delete(`/materials/${id}`);
+  return response.data;
 }
 
 export interface UpdateMaterialPayload extends AddMaterialPayload {
@@ -49,7 +49,7 @@ export interface UpdateMaterialPayload extends AddMaterialPayload {
 // Update Material API
 export async function updateMaterialAPI(payload: UpdateMaterialPayload) {
   const { id, name, divide, unit, usage, price, cost } = payload;
-  await client.patch(`/materials/${id}`, {
+  const response = await client.patch(`/materials/${id}`, {
     name,
     divide,
     unit,
@@ -57,5 +57,5 @@ export async function updateMaterialAPI(payload: UpdateMaterialPayload) {
     price,
     cost,
   });
-  return null;
+  return response.data;
 }

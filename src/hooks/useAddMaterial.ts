@@ -1,9 +1,10 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useMutation, useQueryClient } from 'react-query';
 import { addMaterialAPI } from '../api/materials';
+import * as ImagePicker from 'expo-image-picker';
 
 interface Props {
   navigation: NativeStackNavigationProp<RootStackParamsList>;
@@ -13,7 +14,7 @@ function useAddMaterial({ navigation }: Props) {
   const queryClient = useQueryClient();
   const route = useRoute();
   const { id }: any = route.params;
-  const [inputs, setInputs] = useState<MaterialType>({
+  const [inputs, setInputs] = useState<InputMaterialType>({
     id: '',
     name: '',
     usage: '',
@@ -41,7 +42,7 @@ function useAddMaterial({ navigation }: Props) {
     addMaterial({
       recipe_id: id,
       name,
-      usage: parseInt(usage),
+      usage: parseFloat(usage),
       unit,
       divide,
       price: parseInt(price),
@@ -49,6 +50,21 @@ function useAddMaterial({ navigation }: Props) {
     });
     navigation.goBack();
   }, [name, usage, unit, divide, price, cost, addMaterial]);
+
+  const checkPermission = async () => {
+    const { status } = await ImagePicker.getMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      alert(
+        "Please grant camera roll permissions inside your system's settings"
+      );
+    } else {
+      console.log('Media Permissions are granted');
+    }
+  };
+
+  useEffect(() => {
+    checkPermission();
+  }, []);
 
   return {
     inputs,

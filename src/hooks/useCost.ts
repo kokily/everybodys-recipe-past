@@ -14,15 +14,11 @@ function useCost() {
   const { data: recipe } = useQuery('recipe', () => readRecipeAPI(id), {
     enabled: true,
     onSuccess: (data) => {
-      if (data.all_cost) {
-        setAllCost(data.all_cost);
-      } else {
-        let all_cost = 0;
-        data.materials.map((material) => {
-          all_cost += parseInt(material.price) * material.usage;
-        });
-        setAllCost(all_cost);
-      }
+      let all_cost = 0;
+      data.materials.map((material) => {
+        all_cost += parseInt(material.price) * material.usage;
+      });
+      setAllCost(all_cost);
     },
   });
   const [allCost, setAllCost] = useState(0);
@@ -34,7 +30,7 @@ function useCost() {
       Alert.alert('제공 가격을 입력하세요');
       return;
     }
-    
+
     addCostRecipe({ id, all_cost: allCost, all_price: parseInt(allPrice) });
   }, [allPrice, allCost, addCostRecipe]);
 

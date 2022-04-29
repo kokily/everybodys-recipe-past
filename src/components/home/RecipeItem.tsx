@@ -32,11 +32,9 @@ const RecipeItem: React.FC<Props> = ({ recipe, onMenu }) => {
           right={(props) => (
             <Text style={styles.rightStyle}>
               재료{' '}
-              {recipe.materials && recipe.materials.length > 0 ? (
-                <Badge {...props}>{recipe.materials.length}</Badge>
-              ) : (
-                0
-              )}
+              {recipe.materials && recipe.materials.length > 0
+                ? recipe.materials.length
+                : 0}
               개
             </Text>
           )}
