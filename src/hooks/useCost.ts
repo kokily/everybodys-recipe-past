@@ -19,6 +19,10 @@ function useCost() {
         all_cost += parseInt(material.price) * material.usage;
       });
       setAllCost(all_cost);
+
+      if (data.all_price) {
+        setAllPrice(data.all_price.toString());
+      }
     },
   });
   const [allCost, setAllCost] = useState(0);

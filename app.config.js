@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 export default {
   expo: {
-    name: 'everybodys-recipes-kokily',
+    name: '모두의 레시피',
     slug: 'everybodys-recipes-kokily',
     version: '1.0.0',
     orientation: 'portrait',
