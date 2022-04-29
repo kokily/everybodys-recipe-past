@@ -13,6 +13,22 @@ export async function initRecipeAPI(payload: InitRecipePayload) {
   return response.data;
 }
 
+export interface AddCostRecipePayload {
+  id: string;
+  all_cost: number;
+  all_price: number;
+}
+
+// Add Cost API
+export async function addCostRecipeAPI(payload: AddCostRecipePayload) {
+  const { id, all_cost, all_price } = payload;
+  const response = await client.patch(`/recipes/cost/${id}`, {
+    all_cost,
+    all_price,
+  });
+  return response.data;
+}
+
 export interface AddRecipePayload {
   id: string;
   content: string;

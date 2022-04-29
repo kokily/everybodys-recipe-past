@@ -30,7 +30,8 @@ interface RecipeType {
   thumbnail: string;
   content: string;
   serving: number;
-  all_cost: number;
+  all_price: number | null;
+  all_cost: number | null;
   fk_user_id: string;
   materials: MaterialType[];
 }
@@ -53,9 +54,9 @@ interface MaterialType {
   name: string;
   divide: DivideType;
   unit: UnitType;
-  usage: string;
+  usage: number;
   price: string;
-  cost: string;
+  cost: number;
 }
 
 interface User {
