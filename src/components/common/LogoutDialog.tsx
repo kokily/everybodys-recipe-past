@@ -23,9 +23,6 @@ const LogoutDialog: React.FC<Props> = ({ visible, closeDialog, onLogout }) => (
           justifyContent: 'center',
         }}
       >
-        <Button onPress={closeDialog} style={styles.button}>
-          취소
-        </Button>
         <Button
           onPress={onLogout}
           style={styles.button}
