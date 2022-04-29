@@ -104,16 +104,22 @@ function useInit({ navigation }: Props) {
   };
 
   const checkPermission = async () => {
-    const { status } = await ImagePicker.getMediaLibraryPermissionsAsync();
-    if (status !== 'granted') {
-      setHasPermission(false);
-      alert(
-        "Please grant camera roll permissions inside your system's settings"
-      );
-    } else {
-      setHasPermission(true);
-      console.log('Media Permissions are granted');
+    const cameraPermission = await Camera.requestCameraPermissionsAsync();
+    const imagePermission =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (
+      cameraPermission.status !== 'granted' &&
+      imagePermission.status !== 'granted'
+    ) {
+      Alert.alert('미디어 액세스 권한이 필요합니다!');
+      return;
     }
+
+    setHasPermission(
+      cameraPermission.status === 'granted' &&
+        imagePermission.status === 'granted'
+    );
   };
 
   useEffect(() => {

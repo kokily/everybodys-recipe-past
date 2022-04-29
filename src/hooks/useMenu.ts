@@ -1,5 +1,5 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useQueryClient, useMutation, useQuery } from 'react-query';
@@ -82,6 +82,20 @@ function useMenu({ navigation }: Props) {
       return;
     }
   };
+
+  const checkPermission = async () => {
+    const imagePermission =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (imagePermission.status !== 'granted') {
+      Alert.alert('미디어 액세스 권한이 필요합니다!');
+      return;
+    }
+  };
+
+  useEffect(() => {
+    checkPermission();
+  }, []);
 
   return {
     recipe: data,
