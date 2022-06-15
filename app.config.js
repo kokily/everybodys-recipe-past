@@ -26,7 +26,7 @@ export default {
         backgroundColor: '#FFFFFF',
       },
       package: 'com.dnkdream.everybodys',
-      permissions: ['CAMERA'],
+      permissions: ['CAMERA', 'ACCESS_FINE_LOCATION'],
     },
     web: {
       favicon: './assets/favicon.png',
