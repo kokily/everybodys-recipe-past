@@ -25,11 +25,11 @@ export default {
         foregroundImage: './assets/adaptive-icon.png',
         backgroundColor: '#FFFFFF',
       },
-      package: "com.dnkdream.everybodys",
-      permissions: []
+      package: 'com.dnkdream.everybodys',
+      permissions: ['CAMERA'],
     },
     web: {
       favicon: './assets/favicon.png',
-    }
+    },
   },
 };
