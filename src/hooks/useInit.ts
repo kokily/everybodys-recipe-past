@@ -108,6 +108,11 @@ function useInit({ navigation }: Props) {
     const imagePermission =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
 
+    setHasPermission(
+      cameraPermission.status === 'granted' &&
+        imagePermission.status === 'granted'
+    );
+
     if (
       cameraPermission.status !== 'granted' &&
       imagePermission.status !== 'granted'
@@ -115,11 +120,6 @@ function useInit({ navigation }: Props) {
       Alert.alert('미디어 액세스 권한이 필요합니다!');
       return;
     }
-
-    setHasPermission(
-      cameraPermission.status === 'granted' &&
-        imagePermission.status === 'granted'
-    );
   };
 
   useEffect(() => {

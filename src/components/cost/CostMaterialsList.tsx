@@ -34,7 +34,9 @@ const CostMaterialsList: React.FC<Props> = ({ materials }) => (
       ))
     ) : (
       <Row>
-        <Col size={100}>저장된 재료가 없습니다</Col>
+        <Col size={100}>
+          <Text style={styles.text}>저장된 재료가 없습니다</Text>
+        </Col>
       </Row>
     )}
   </Grid>
