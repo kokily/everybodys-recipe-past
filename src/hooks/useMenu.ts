@@ -83,20 +83,6 @@ function useMenu({ navigation }: Props) {
     }
   };
 
-  const checkPermission = async () => {
-    const imagePermission =
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (imagePermission.status !== 'granted') {
-      Alert.alert('미디어 액세스 권한이 필요합니다!');
-      return;
-    }
-  };
-
-  useEffect(() => {
-    checkPermission();
-  }, []);
-
   return {
     recipe: data,
     banner,
