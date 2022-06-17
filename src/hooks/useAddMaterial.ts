@@ -51,21 +51,6 @@ function useAddMaterial({ navigation }: Props) {
     navigation.goBack();
   }, [name, usage, unit, divide, price, cost, addMaterial]);
 
-  const checkPermission = async () => {
-    const { status } = await ImagePicker.getMediaLibraryPermissionsAsync();
-    if (status !== 'granted') {
-      alert(
-        "Please grant camera roll permissions inside your system's settings"
-      );
-    } else {
-      console.log('Media Permissions are granted');
-    }
-  };
-
-  useEffect(() => {
-    checkPermission();
-  }, []);
-
   return {
     inputs,
     setInputs,
