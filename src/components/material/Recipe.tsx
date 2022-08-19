@@ -26,6 +26,7 @@ const Recipe: React.FC<Props> = ({
         <View style={styles.content}>
           <Input
             numberOfLines={10}
+            multiline={true}
             placeholder="레시피 내용"
             autoCapitalize="none"
             value={content}
